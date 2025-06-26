@@ -1,12 +1,30 @@
-# React + Vite
+# 🎬 React Movie Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React Movie Finder, sabit (statik) film verileri kullanarak film araması yapmanızı sağlayan basit ve kullanıcı dostu bir React uygulamasıdır. Gerçek zamanlı arama işlevi sayesinde kullanıcılar filtreleme yaparak istedikleri filmleri kolayca bulabilir.
 
-Currently, two official plugins are available:
+## 📸 Ekran Görüntüsü
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Movie Finder Screenshot](https://github.com/umutdiyar/react-movieFinder/blob/main/public/moviFinder_Screenshot.png)<!-- Varsa ekran görüntüsü buraya eklenebilir -->
 
-## Expanding the ESLint configuration
+## 🚀 Özellikler
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Statik film verileriyle çalışan sade film arama sistemi
+- Canlı (anlık) arama filtreleme özelliği
+- React functional component ve hook kullanımı
+- Modern ve responsive tasarım
+
+## 🛠️ Kullanılan Teknolojiler
+
+- [React](https://reactjs.org/)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- CSS (veya Tailwind / başka bir kütüphane kullanıldıysa buraya ekleyebilirsin)
+
+## 📦 Kurulum
+
+Projeyi kendi bilgisayarınızda çalıştırmak için şu adımları izleyin:
+
+### 1. Depoyu klonlayın
+
+```bash
+git clone https://github.com/umutdiyar/react-movieFinder.git
+cd react-movieFinder
