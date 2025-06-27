@@ -75,23 +75,26 @@ const MovieFinder = () => {
       plot: "Batman, Commissioner Gordon ve Harvey Dent ile birlikte Gotham'ı organize suçtan temizlemeye çalışır. Ancak Joker adında kaotik bir suçlu ortaya çıkar ve şehri anarşiye sürükler. Batman, ahlaki değerleri ile sınırlarını test eden bir savaşa girer.",
       popular: true,
     },
+
     {
       id: 4,
-      title: "The Piyanist",
-      year: 2003,
-      rating: 8.8,
-      genre: "Drama",
-      duration: "150 min",
-      director: "Roman Polanski",
-      cast: ["Adrien Brody", "Thomas Kretschmann", "Frank Finlay"],
+      title: "The Matrix",
+      year: 1999,
+      rating: 8.7,
+      genre: "Sci-Fi",
+      duration: "136 min",
+      director: "Lana Wachowski, Lilly Wachowski",
+      cast: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
       poster:
-        "	https://media.themoviedb.org/t/p/w300_and_h450_bestv2/8gdOy6vd1lK2KyakZroETXyB4re.jpg",
+        "	https://media.themoviedb.org/t/p/w300_and_h450_bestv2/p96dm7sCMn4VYAStA6siNz30G1r.jpg",
       backdrop:
-        "	https://media.themoviedb.org/t/p/w300_and_h450_bestv2/8gdOy6vd1lK2KyakZroETXyB4re.jpg",
-      description: "Müzik tutkusuydu. Hayatta kalmak başyapıtıydı.",
-      plot: "Wladyslaw Szpilman, Polonyalı başarılı bir piyanisttir. İkinci Dünya Savaşı'nda Almanların Polonya'yı işgal etmesiyle hayatı kâbusa döner. Musevi olduğu halde şans eseri toplama kamplarına gitmekten kurtulur ve Varşova'nın gettolarında yaşamaya başlar. Acı ve sefalet dolu yaşamı, bir gün bir Alman subayının ona yardıma gelmesi ve onu oradan kurtarmasıyla değişir.",
-      popular: true,
+        "	https://media.themoviedb.org/t/p/w300_and_h450_bestv2/p96dm7sCMn4VYAStA6siNz30G1r.jpg",
+      description:
+        "Bir bilgisayar programcısı, gerçekliğin aslında bir simülasyon olduğunu keşfeder.",
+      plot: "Neo, gündüzleri sıradan bir programcı, geceleri ise hacker olan genç bir adamdır. Morpheus adlı gizemli bir adamla tanışınca, yaşadığı dünyanın aslında Matrix adı verilen bir simülasyon olduğunu öğrenir ve insanlığı kurtarma misyonuna katılır.",
+      popular: false,
     },
+
     {
       id: 5,
       title: "Forrest Gump",
@@ -127,24 +130,25 @@ const MovieFinder = () => {
       plot: "Dom Cobb, insanların bilinçaltına girip sırlarını çalabilen usta bir hırsızdır. Ona imkansız bir görev verilir: Inception. Bir fikri çalmak yerine, bir fikir yerleştirmek zorundadır. Bu son iş, onu sevdiklerine kavuşturacaktır.",
       popular: true,
     },
+
     {
       id: 7,
-      title: "The Matrix",
-      year: 1999,
-      rating: 8.7,
-      genre: "Sci-Fi",
-      duration: "136 min",
-      director: "Lana Wachowski, Lilly Wachowski",
-      cast: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
+      title: "The Piyanist",
+      year: 2003,
+      rating: 8.8,
+      genre: "Drama",
+      duration: "150 min",
+      director: "Roman Polanski",
+      cast: ["Adrien Brody", "Thomas Kretschmann", "Frank Finlay"],
       poster:
-        "	https://media.themoviedb.org/t/p/w300_and_h450_bestv2/p96dm7sCMn4VYAStA6siNz30G1r.jpg",
+        "	https://media.themoviedb.org/t/p/w300_and_h450_bestv2/8gdOy6vd1lK2KyakZroETXyB4re.jpg",
       backdrop:
-        "	https://media.themoviedb.org/t/p/w300_and_h450_bestv2/p96dm7sCMn4VYAStA6siNz30G1r.jpg",
-      description:
-        "Bir bilgisayar programcısı, gerçekliğin aslında bir simülasyon olduğunu keşfeder.",
-      plot: "Neo, gündüzleri sıradan bir programcı, geceleri ise hacker olan genç bir adamdır. Morpheus adlı gizemli bir adamla tanışınca, yaşadığı dünyanın aslında Matrix adı verilen bir simülasyon olduğunu öğrenir ve insanlığı kurtarma misyonuna katılır.",
-      popular: false,
+        "	https://media.themoviedb.org/t/p/w300_and_h450_bestv2/8gdOy6vd1lK2KyakZroETXyB4re.jpg",
+      description: "Müzik tutkusuydu. Hayatta kalmak başyapıtıydı.",
+      plot: "Wladyslaw Szpilman, Polonyalı başarılı bir piyanisttir. İkinci Dünya Savaşı'nda Almanların Polonya'yı işgal etmesiyle hayatı kâbusa döner. Musevi olduğu halde şans eseri toplama kamplarına gitmekten kurtulur ve Varşova'nın gettolarında yaşamaya başlar. Acı ve sefalet dolu yaşamı, bir gün bir Alman subayının ona yardıma gelmesi ve onu oradan kurtarmasıyla değişir.",
+      popular: true,
     },
+
     {
       id: 8,
       title: "Goodfellas",
@@ -514,6 +518,24 @@ const MovieFinder = () => {
           onClose={() => setSelectedMovie(null)}
         />
       )}
+
+      <footer className="bg-white border-t border-gray-200 py-4 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-600 text-sm">
+              © 2024 Made with Created by{" "}
+              <a
+                href="https://github.com/umutdiyar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
+              >
+                Umut Diyar Balcı
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
