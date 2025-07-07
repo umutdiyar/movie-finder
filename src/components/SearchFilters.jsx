@@ -59,7 +59,7 @@ const SearchAndFilters = ({
       )}
 
       {/* Başlık */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-gray-900">
           {showFavorites ? "❤️ Favori Filmlerim" : "🎭 Tüm Filmler"}
         </h2>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchGenres, searchMovie } from "./api/api";
+import { fetchGenres, searchMovie, fetchPopularMovies } from "./api/api";
 import Navbar from "./components/Navbar";
 import SearchFilters from "./components/SearchFilters";
 import MovieCard from "./components/MovieCard";
@@ -16,37 +16,43 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  // Türleri yükle
   useEffect(() => {
-    async function loadInitial() {
+    async function loadData() {
       const g = await fetchGenres();
       setGenres(g);
-    }
-    loadInitial();
-  }, []);
 
-  // Arama veya showFavorites değiştiğinde film verisini güncelle
-  useEffect(() => {
-    const query = searchTerm.trim() === "" ? "a" : searchTerm.trim();
+      setLoading(true);
 
-    setLoading(true);
-    searchMovie(query)
-      .then((data) => {
+      try {
+        let data = [];
+
+        if (searchTerm.trim() === "") {
+          data = await fetchPopularMovies();
+        } else {
+          data = await searchMovie(searchTerm.trim());
+        }
+
         setMovies(data);
-      })
-      .catch(() => {
+      } catch (e) {
         setMovies([]);
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+
+    loadData();
   }, [searchTerm]);
 
   // Favori ekleme/çıkarma fonksiyonu
-  const toggleFavorite = (id) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
-    );
+  const toggleFavorite = (movie) => {
+    setFavorites((prev) => {
+      const exists = prev.find((f) => f.id === movie.id);
+      if (exists) {
+        return prev.filter((f) => f.id !== movie.id);
+      } else {
+        return [...prev, movie];
+      }
+    });
   };
 
   // Tür id → isim map'i
@@ -56,9 +62,7 @@ function App() {
   }, {});
 
   // Filtrelenmiş film listesi: favoriler, tür ve arama kriterlerine göre
-  const filteredMovies = movies.filter((m) => {
-    if (showFavorites && !favorites.includes(m.id)) return false;
-
+  const filteredMovies = (showFavorites ? favorites : movies).filter((m) => {
     if (selectedGenre !== "all" && !m.genre_ids.includes(Number(selectedGenre)))
       return false;
 
@@ -71,6 +75,12 @@ function App() {
     return true;
   });
 
+  const handleHomeClick = () => {
+    setSearchTerm(""); // Arama terimini temizle
+    setSelectedGenre("all"); // Genre seçimini sıfırla
+    setShowFavorites(false); // Favoriler görünümünü kapat
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar
@@ -78,6 +88,7 @@ function App() {
         setShowFavorites={setShowFavorites}
         favorites={favorites}
         total={filteredMovies.length}
+        onHomeClick={handleHomeClick}
       />
 
       <SearchFilters
@@ -103,8 +114,8 @@ function App() {
             <MovieCard
               key={movie.id}
               movie={movie}
-              favorites={favorites}
-              toggleFavorite={toggleFavorite}
+              favorites={favorites.map((f) => f.id)}
+              toggleFavorite={() => toggleFavorite(movie)}
               setSelectedMovie={setSelectedMovie}
               genresMap={genresMap}
             />

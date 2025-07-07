@@ -11,39 +11,41 @@ function formatMovie(movie) {
     year: movie.release_date?.split("-")[0],
     rating: movie.vote_average,
     description: movie.overview,
-    genre_ids: movie.genre_ids,
-    duration: "?", // TMDB duration başka endpoint'te, istersen sonra ekleriz
+    genre_ids: movie.genre_ids || [],
+    duration: "?", // Detaydan alınabilir
   };
 }
 
-export const searchMovie = async (query) => {
+export async function searchMovie(query) {
   const response = await fetch(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&language=tr-TR&query=${query}`
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&language=tr-TR&query=${encodeURIComponent(
+      query
+    )}`
   );
   const data = await response.json();
-  return data.results.map(formatMovie); // 👈 burada da
-};
+  return data.results?.map(formatMovie) || [];
+}
 
-export const fetchGenres = async () => {
+export async function fetchGenres() {
   const response = await fetch(
     `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=tr-TR`
   );
   const data = await response.json();
-  return data.genres;
-};
+  return data.genres || [];
+}
 
-export const fetchMovieDetails = async (movieId) => {
+export async function fetchMovieDetails(movieId) {
   const response = await fetch(
     `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=tr-TR`
   );
   const data = await response.json();
   return {
     plot: data.overview,
-    director: data.director || "Yönetmen bilgisi yok", // Bunu ayrı çekeceğiz aşağıda
+    runtime: data.runtime,
   };
-};
+}
 
-export const fetchMovieCredits = async (movieId) => {
+export async function fetchMovieCredits(movieId) {
   const response = await fetch(
     `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=tr-TR`
   );
@@ -52,4 +54,12 @@ export const fetchMovieCredits = async (movieId) => {
     data.crew.find((person) => person.job === "Director")?.name || "Bilinmiyor";
   const cast = data.cast.slice(0, 6).map((actor) => actor.name);
   return { director, cast };
-};
+}
+
+export async function fetchPopularMovies() {
+  const res = await fetch(
+    `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=tr-TR&page=1`
+  );
+  const data = await res.json();
+  return data.results?.map(formatMovie) || [];
+}

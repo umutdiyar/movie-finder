@@ -38,8 +38,18 @@ const MovieModal = ({
     .filter(Boolean)
     .join(", ");
 
+  // Modal dışına tıklanınca kapatma fonksiyonu
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+      onClick={handleBackdropClick}
+    >
       <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-xl">
         <div className="relative">
           <img
@@ -65,7 +75,6 @@ const MovieModal = ({
                 {movie.rating?.toFixed(1) || "?"}
               </span>
               <span>{movie.year || "-"}</span>
-              <span>{movie.duration || "?"}</span>
             </div>
           </div>
         </div>
@@ -103,9 +112,9 @@ const MovieModal = ({
               </p>
 
               <h3 className="font-bold text-lg mb-2">Yönetmen</h3>
-              <p className="text-gray-700 mb-4">
+              <span className="inline-block mt-2 bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm mr-2 mb-2 cursor-pointer hover:bg-gray-700 hover:text-gray-100">
                 {details.director || "Yükleniyor..."}
-              </p>
+              </span>
             </div>
 
             <div>
@@ -115,7 +124,7 @@ const MovieModal = ({
                   cast.map((actor, index) => (
                     <span
                       key={index}
-                      className="inline-block mt-2 bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm mr-2 mb-2"
+                      className="inline-block mt-2 bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm mr-2 mb-2 cursor-pointer hover:bg-gray-700 hover:text-gray-100"
                     >
                       {actor}
                     </span>

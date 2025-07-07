@@ -5,12 +5,24 @@ const Navbar = ({
   setShowFavorites,
   favorites = [],
   total = 0,
+  onHomeClick, // Anasayfaya dönüş için yeni prop
 }) => {
+  const handleHomeClick = () => {
+    if (onHomeClick) {
+      onHomeClick(); // Ana component'ten gelen reset fonksiyonunu çağır
+    }
+  };
+
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">🎬 MovieFinder</h1>
+          <h1
+            className="text-3xl font-bold text-gray-900 cursor-pointer transition-colors"
+            onClick={handleHomeClick}
+          >
+            🎬 MovieFinder
+          </h1>
           <div className="flex items-center gap-4">
             <button
               onClick={() => setShowFavorites(!showFavorites)}
