@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import SearchFilters from "./components/SearchFilters";
 import MovieCard from "./components/MovieCard";
 import MovieModal from "./components/MovieModal";
+import Footer from "./components/Footer";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -120,6 +121,8 @@ function App() {
           toggleFavorite={toggleFavorite}
         />
       )}
+
+      <Footer />
     </div>
   );
 }
