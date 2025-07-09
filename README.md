@@ -1,30 +1,29 @@
 # 🎬 React Movie Finder
+A simple and modern user-friendly React app to search and filter movies in real-time.
 
-React Movie Finder, sabit (statik) film verileri kullanarak film araması yapmanızı sağlayan basit ve kullanıcı dostu bir React uygulamasıdır. Gerçek zamanlı arama işlevi sayesinde kullanıcılar filtreleme yaparak istedikleri filmleri kolayca bulabilir.
+## 🚀 Live Demo
+You can try the app here: [Movie Finder](https://moviefinder-umutdiyar.vercel.app/)
 
-## 📸 Ekran Görüntüsü
+## 📸 Screenshot
 
 ![Movie Finder Screenshot](https://github.com/umutdiyar/react-movieFinder/blob/main/public/moviFinder_Screenshot.png)<!-- Varsa ekran görüntüsü buraya eklenebilir -->
 
-## 🚀 Özellikler
+## ⚙️ Features
+- 🔍 Instant search as you type  
+- 📱 Fully modern and responsive design  
+- ⚛️ Built with React Hooks & functional components  
 
-- Statik film verileriyle çalışan sade film arama sistemi
-- Canlı (anlık) arama filtreleme özelliği
-- React functional component ve hook kullanımı
-- Modern ve responsive tasarım
+## 🛠️ Technologies
+- React  
+- Vite  
+- Tailwind CSS  
+- Lucide React 
 
-## 🛠️ Kullanılan Teknolojiler
-
-- [React](https://reactjs.org/)
-- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-- CSS (veya Tailwind / başka bir kütüphane kullanıldıysa buraya ekleyebilirsin)
-
-## 📦 Kurulum
-
-Projeyi kendi bilgisayarınızda çalıştırmak için şu adımları izleyin:
-
-### 1. Depoyu klonlayın
+## 📦 Installation & Running Locally
+Follow these steps to run the project on your own computer:
 
 ```bash
 git clone https://github.com/umutdiyar/react-movieFinder.git
 cd react-movieFinder
+npm install      # or yarn install
+npm run dev      # or yarn dev
