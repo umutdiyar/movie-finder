@@ -16,26 +16,37 @@ const Navbar = ({
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          {/* Logo ve Başlık */}
           <h1
-            className="text-3xl font-bold text-gray-900 cursor-pointer transition-colors"
+            className="text-2xl sm:text-3xl font-bold text-gray-900 cursor-pointer transition-colors hover:text-red-500 text-center sm:text-left"
             onClick={handleHomeClick}
           >
-            🎬 MovieFinder
+            🎬 Film Bulucu
           </h1>
-          <div className="flex items-center gap-4">
+
+          {/* Butonlar ve Bilgiler */}
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+            {/* Favoriler Butonu */}
             <button
               onClick={() => setShowFavorites(!showFavorites)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm sm:text-base order-1 sm:order-2 ${
                 showFavorites
                   ? "bg-red-500 text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white"
               }`}
             >
               <Heart size={16} fill={showFavorites ? "currentColor" : "none"} />
-              Favoriler ({favorites.length})
+              <span className="whitespace-nowrap">
+                Favoriler ({favorites.length})
+              </span>
             </button>
-            <div className="text-sm text-gray-500">{total} film bulundu</div>
+
+            {/* Film Sayısı - Mobilde üstte */}
+            <div className="text-sm text-gray-500 text-center sm:text-left order-1 sm:order-2">
+              <span className="sm:hidden">Toplam: </span>
+              {total} film bulundu
+            </div>
           </div>
         </div>
       </div>

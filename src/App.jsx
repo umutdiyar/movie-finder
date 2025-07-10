@@ -43,7 +43,6 @@ function App() {
     loadData();
   }, [searchTerm]);
 
-  // Favori ekleme/çıkarma fonksiyonu
   const toggleFavorite = (movie) => {
     setFavorites((prev) => {
       const exists = prev.find((f) => f.id === movie.id);
@@ -55,13 +54,21 @@ function App() {
     });
   };
 
+  const toggleFavoriteInModal = (movie) => {
+    toggleFavorite(movie);
+    // Eğer favorilerden çıkarılıyorsa ve favoriler sayfasındaysak modalı kapat
+    const isCurrentlyFavorite = favorites.find((f) => f.id === movie.id);
+    if (isCurrentlyFavorite && showFavorites) {
+      setSelectedMovie(null);
+    }
+  };
+
   // Tür id → isim map'i
   const genresMap = genres.reduce((acc, g) => {
     acc[g.id] = g.name;
     return acc;
   }, {});
 
-  // Filtrelenmiş film listesi: favoriler, tür ve arama kriterlerine göre
   const filteredMovies = (showFavorites ? favorites : movies).filter((m) => {
     if (selectedGenre !== "all" && !m.genre_ids.includes(Number(selectedGenre)))
       return false;
@@ -80,6 +87,13 @@ function App() {
     setSelectedGenre("all"); // Genre seçimini sıfırla
     setShowFavorites(false); // Favoriler görünümünü kapat
   };
+
+  const isFavorite = selectedMovie
+    ? favorites.some((f) => f.id === selectedMovie.id)
+    : false;
+
+  const shouldShowNoResultsMessage =
+    !loading && filteredMovies.length === 0 && !showFavorites;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -106,7 +120,7 @@ function App() {
 
       {loading ? (
         <div className="text-center p-4">Yükleniyor...</div>
-      ) : filteredMovies.length === 0 ? (
+      ) : shouldShowNoResultsMessage ? (
         <div className="text-center p-4 text-red-800">Film bulunamadı!</div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 px-8">
@@ -128,8 +142,8 @@ function App() {
           movie={selectedMovie}
           genresMap={genresMap}
           onClose={() => setSelectedMovie(null)}
-          favorites={favorites}
-          toggleFavorite={toggleFavorite}
+          isFavorite={isFavorite}
+          toggleFavorite={() => toggleFavoriteInModal(selectedMovie)}
         />
       )}
 
