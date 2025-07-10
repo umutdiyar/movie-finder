@@ -5,7 +5,7 @@ import { fetchMovieDetails, fetchMovieCredits } from "../api/api";
 const MovieModal = ({
   movie,
   onClose,
-  favorites = [],
+  isFavorite = false,
   toggleFavorite,
   genresMap = {},
 }) => {
@@ -44,6 +44,9 @@ const MovieModal = ({
       onClose();
     }
   };
+
+  // Debug için
+  console.log("MovieModal isFavorite:", isFavorite, "Movie:", movie?.title);
 
   return (
     <div
@@ -90,16 +93,17 @@ const MovieModal = ({
               </p>
             </div>
             <button
-              onClick={() => toggleFavorite(movie.id)}
-              className={`p-3 rounded-full transition-colors ${
-                favorites.includes(movie.id)
-                  ? "bg-red-500 text-white"
-                  : "bg-gray-100 text-red-500 hover:bg-red-500 hover:text-white"
+              onClick={toggleFavorite}
+              className={`p-3 rounded-full transition-all duration-200 transform hover:scale-110 border-2 ${
+                isFavorite
+                  ? "bg-red-500 text-white border-red-500 shadow-lg"
+                  : "bg-white text-red-500 border-red-500 hover:bg-red-500 hover:text-white"
               }`}
             >
               <Heart
                 size={20}
-                fill={favorites.includes(movie.id) ? "currentColor" : "none"}
+                fill={isFavorite ? "currentColor" : "none"}
+                className={`transition-all duration-200`}
               />
             </button>
           </div>
